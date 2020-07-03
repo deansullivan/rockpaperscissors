@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nuu</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+    function playRound(ps, cs){
+       let player = ps.toLowerCase()
+       
+       if(player == cs){
+         return 0
+        } else if((player == 'rock' && cs == 'scissors') || (player == 'scissors' && cs == 'paper') || (player == 'paper' && cs == 'rock')){
+          return 1
+        } else{
+          return -1
+        }
+    }
+    
+    function computerPlay(){
+      var choice = ['rock', 'paper', 'scissors']
+      var compChoice = choice[Math.floor(Math.random() * choice.length)]
+      return compChoice
+    }
+    
+    function game(numGames){
+      let score = 0
+      var i
+      
+      for (i = 0; i < numGames; i++){
+      let playerChoice = prompt("Rock, paper, or scissors?")
+      let playerSelection = playerChoice.toLowerCase()
+      let computerSelection = computerPlay()
+      let currentGame = playRound(playerSelection, computerSelection)
+      reportOutcome(currentGame)
+      score = score + currentGame
+      console.log(score)
+      }
+      winLoseDraw(score)
+      
+      
+    }
+    
+    function reportOutcome(outcome){
+      if(outcome == 0){
+        console.log("Tie")
+      } else if(outcome == 1){
+        console.log("Win")
+      } else{
+        console.log("Lose")
+      }
+    }
+    
+    function winLoseDraw(total){
+      if(total > 0){
+        console.log(total + " points! The game is yours!")
+      } else if(total < 0){
+        console.log(total + " points. Lol")
+      } else {
+        console.log("You tied.")
+      }
+    }
+
+    game(5)
+    
+
+  </script>
+</body>
+</html>
